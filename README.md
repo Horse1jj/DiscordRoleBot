@@ -5,3 +5,11 @@ I would LOVE if you can give me credit in bots description! Not needed but it wo
 
 Version 1.2
 - Changed @user to user, can just type the user and it will give the role.
+
+version 1.3 
+
+- updated to new newest discord.py 
+
+version 1.4 
+
+made it load ids from a config.json for easier edditing 
