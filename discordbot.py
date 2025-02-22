@@ -7,9 +7,9 @@ with open('config.json', 'r') as f:
     config = json.load(f)
 
 TOKEN = config["bot_token"]
-GUILD_ID = config["server_id"]
-ROLE_ID = config["role_id"]
-CHANNEL_ID = config["channel_id"]
+GUILD_ID = int(config["server_id"])
+ROLE_ID = int(config["role_id"])
+CHANNEL_ID = int(config["channel_id"])
 
 # Setup bot with intents
 intents = discord.Intents.default()
@@ -31,9 +31,7 @@ async def on_message(message):
         return
 
     if message.channel.id != CHANNEL_ID:
-        return
-
-    text = message.content.strip().lower()
+        return  # Ignore messages from other channels
 
     guild = bot.get_guild(GUILD_ID)
     if guild is None:
@@ -44,6 +42,8 @@ async def on_message(message):
     if role_to_give is None:
         print("Role not found.")
         return
+
+    text = message.content.strip().lower()
 
     # Find a member with a username that matches the message content
     member = discord.utils.find(lambda m: m.name.lower() == text, guild.members)
